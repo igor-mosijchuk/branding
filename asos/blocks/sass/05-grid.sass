@@ -5,23 +5,28 @@
 	+ph($pp)
 	// +mh(-.5*$pp)
 
-=col($n: 0, $col_gutter: $gg)
-	+mh($g)
-	width: calc(#{$n*$atom} - #{$col_gutter})
+=col($n: 0, $col_gutter: $gg, $m: $g)
 	@if $n == 0
 		flex-grow: 1
-		width: 0%
+		width: 100%
+	width: calc(#{$n*$atom} - #{$col_gutter})
+	+mh($m)
 
 
-=box($n: 0, $pp: $g, $col_padding: $g)
+=box($n: 0, $ph: $g, $p: 0)
 	width: $n*$atom
-	@if $pp != 0
-		+ph($pp)
+
 	@if $n == 0
 		flex-grow: 1
 		width: 100%
 
-=row-flex($jc: flex-start, $fw: wrap)
+	@if $ph != 0
+		+ph($ph)
+	@if $p != 0
+		+ph($p+$ph)
+
+
+=row-flex($jc: space-between, $fw: wrap)
 	display: flex
 	flex-wrap: $fw
 	justify-content: $jc
