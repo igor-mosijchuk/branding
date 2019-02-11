@@ -3,7 +3,6 @@
 	max-width: $wrap
 	margin: 0 auto
 	+ph($pp)
-	// +mh(-.5*$pp)
 
 =col($n: 0, $col_gutter: $gg, $m: $g)
 	@if $n == 0
@@ -12,24 +11,36 @@
 	width: calc(#{$n*$atom} - #{$col_gutter})
 	+mh($m)
 
+=size($n: 0)
+	@if $n == 0
+		flex-grow: 1
+		// flex-shrink: 1000
+	@if $n > 0 and $n < $cols
+		width: $n * $atom
+
+=grid($pl:$g,$pr:$g)
+	padding-right: $pr
+	padding-left: $pl
+=addl($a: 0%)
+	padding-left: calc(#{$a} + #{$g})
+=addr($a: 0)
+	padding-right: calc(#{$a} + #{$g}
 
 =box($n: 0, $ph: $g, $p: 0)
 	width: $n*$atom
 
 	@if $n == 0
 		flex-grow: 1
-		width: 100%
+		// width: 100%
 
 	@if $ph != 0
 		+ph($ph)
 	@if $p != 0
 		+ph($p+$ph)
 
-
-=row-flex($jc: space-between, $fw: wrap)
+=row-flex($fw: wrap)
 	display: flex
 	flex-wrap: $fw
-	justify-content: $jc
 
 =media($break)
 	@if map-has-key($screens, $break)
@@ -52,17 +63,24 @@
 	top: 0
 	transform: translate(-50%)
 	transform-origin: 50%
-	// border-right: 1px solid #173668
-	// border-left: 1px solid #173668
+
 	+wrap
 
 	ul
 		+row-flex
 		// +row-flex(center)
-		background: rgba(23,54,104,.5)
+		background: rgba(23,54,104,.3)
 		
+		border-right: 1px solid #173668
 		li
 			+col(1)
-			background: rgba(23,54,104,.5)
+			background: rgba(23,54,104,.6)
 			// +br
-			height: 100vh
+			border-right: 1px solid #173668
+			&:before, &:after
+				height: 100vh
+				content: ''
+				display: block
+			&:before
+				border-left: 1px solid #173668
+				margin-left: -$g

@@ -42,3 +42,17 @@
 =quat($quatSide)
 	height: $quatSide
 	width: $quatSide
+
+=jc($jc: 5)
+	@if $jc == 0
+		justify-content: center
+	@else if $jc == 1
+		justify-content: flex-start
+	@else if $jc == 2
+		justify-content: flex-end
+	@else if $jc == 3
+		justify-content: space-around
+	@else if $jc == 4
+		justify-content: space-evenly
+	@else
+		justify-content: space-between
